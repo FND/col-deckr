@@ -10,8 +10,9 @@ var PORT = 3000;
 var STORE = path.resolve(__dirname, "store");
 
 var app = express();
-app.use("/assets", express.static(STORE));
 app.set("view engine", "jade");
+app.use("/assets", express.static(STORE));
+app.get("/", frontpage);
 var store = new Store(STORE);
 
 store.populate().
@@ -22,7 +23,7 @@ store.populate().
 		console.error("[ERROR]", msg);
 	});
 
-app.get("/", (req, res) => {
+function frontpage(req, res) {
 	var filters = req.query;
 	// ensure filters are always arrays
 	filters = ["faction", "category"].reduce((memo, filter) => {
@@ -38,7 +39,7 @@ app.get("/", (req, res) => {
 			cards = cards.map(path => "/assets" + path); // XXX: Unix only
 			res.render("index", { store, cards, filters });
 		});
-});
+}
 
 function spawnServer() {
 	var server = app.listen(PORT, HOST, () => {
