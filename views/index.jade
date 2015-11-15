@@ -1,12 +1,23 @@
 extends ./_layout
 
-block content
-	h3 Factions
-	ul
-		each faction in store.factions
-			li= faction
+mixin selectionList(caption, fieldName, items)
+	fieldset
+		legend= caption
+		ul
+			each item in items
+				li
+					label
+						input(type="checkbox" name=fieldName value=item checked)
+						| #{item}
 
-	h3 Categories
+block content
+	form(action="" method="get")
+		+selectionList("Factions", "faction", store.factions)
+		+selectionList("Categories", "category", store.categories)
+
+		button(type="submit") apply filters
+
 	ul
-		each category in store.categories
-			li= category
+		each card in cards
+			li
+				img(src=card)
