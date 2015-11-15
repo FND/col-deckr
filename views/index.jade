@@ -1,19 +1,22 @@
 extends ./_layout
 
-mixin selectionList(caption, fieldName, items)
+mixin selectionList(caption, fieldName, items, selected)
 	fieldset
 		legend= caption
 		ul
 			each item in items
 				li
 					label
-						input(type="checkbox" name=fieldName value=item checked)
+						input(type="checkbox" name=fieldName value=item
+								checked=!selected.size || selected.has(item))
 						| #{item}
 
 block content
 	form(action="" method="get")
-		+selectionList("Factions", "faction", store.factions)
-		+selectionList("Categories", "category", store.categories)
+		+selectionList("Factions", "faction", store.factions,
+				new Set(filters.faction))
+		+selectionList("Categories", "category", store.categories,
+				new Set(filters.category))
 
 		button(type="submit") apply filters
 

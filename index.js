@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 	store.cards(filters.faction, filters.category).
 		then(cards => {
 			cards = cards.map(path => "/assets" + path); // XXX: Unix only
-			res.render("index", { store, cards });
+			res.render("index", { store, cards, filters });
 		});
 });
 
