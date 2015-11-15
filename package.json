@@ -1,0 +1,16 @@
+{
+  "name": "col-deckr",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "lint": "eslint *.js && echo ✓"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.9.0"
+  }
+}
