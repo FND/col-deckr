@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js < /dev/null",
     "serve": "node index.js",
     "lint": "eslint *.js && echo ✓"
   },
@@ -12,6 +13,7 @@
     "jade": "^1.11.0"
   },
   "devDependencies": {
-    "eslint": "^1.9.0"
+    "eslint": "^1.9.0",
+    "nodemon": "^1.8.1"
   }
 }
