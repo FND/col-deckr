@@ -1,5 +1,7 @@
 extends ./_layout
 
 block content
-	h1= title
-	p= content
+	h3 Factions
+	ul
+		each faction in store.factions
+			li= faction
